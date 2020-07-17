@@ -3,7 +3,7 @@ Contributors: rafiq91
 Tags: hooks, debug, action, filter, hooksequence
 Requires at least: 4
 Tested up to: 5.4.2
-Stable tag: 0.1.1
+Stable tag: 0.1.2
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -39,6 +39,8 @@ Please note that in odd cases, due to the nature of actions and filters, the plu
 
 == Changelog ==
 
+= 0.1.2 =
+* Add - Hooks linked to WordPress Codex
 = 0.1.1 =
 * Improve - Visual element mapping on page
 = 0.1.0 =

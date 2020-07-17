@@ -2,7 +2,7 @@
 /**
 * Plugin Name: Show Hooks
 * Description: Debug your code quickly by showing the origin of action and filter hooks sequentially on a page.
-* Version: 0.1.1
+* Version: 0.1.2
 * Author: rafiq91
 * License: GPLv2 or later
 * Text Domain: show-hooks
@@ -358,7 +358,12 @@ class ABC_Show_Hooks {
 				if ( $nested_hooks ): ?>
 					<ul class="abc-hook-dropdown">
 						<li class="abc-hook-heading">
-							<strong><?php echo esc_attr($args['type']) ?>:</strong> <?php echo esc_attr($args['ID']); ?>
+							<?php
+								$type = ucwords(esc_attr($args['type']));
+								$id = esc_attr($args['ID']);
+								$url = "https://codex.wordpress.org/Plugin_API/{$type}_Reference/{$id}";
+								echo  "<strong>{$type}:</strong> <a href='{$url}' target='_blank'>{$id}</a>";
+							?>
 						</li>
 						<?php
 						foreach ( $nested_hooks as $nested_key => $nested_value ) :
