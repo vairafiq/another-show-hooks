@@ -2,14 +2,14 @@
 /**
 * Plugin Name: Show Hooks
 * Description: Debug your code quickly by showing the origin of action and filter hooks sequentially on a page.
-* Version: 0.1.2
+* Version: 0.1.3
 * Author: rafiq91
 * License: GPLv2 or later
 * Text Domain: show-hooks
 * Domain Path: /languages/
 */
 /*
-This program is free software; you can redistribute it and/or
+This program is free software originally frocked form @stuartobrien; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
 as published by the Free Software Foundation; either version 2
 of the License, or (at your option) any later version.
@@ -98,7 +98,7 @@ class ABC_Show_Hooks {
 	public function attach_hooks() {
 		if ( $this->status == 'show-action-hooks' || $this->status == 'show-filter-hooks' ) {
 			add_filter( 'all', array( $this, 'hook_all_hooks' ), 100 );
-			add_action( 'shutdown', array( $this, 'notification_switch' ) );
+			// add_action( 'shutdown', array( $this, 'notification_switch' ) );
 			add_action( 'shutdown', array( $this, 'filter_hooks_panel' ) );
 		}
 	}
@@ -108,7 +108,7 @@ class ABC_Show_Hooks {
 	 */
 	public function detach_hooks() {
 		remove_filter( 'all', array( $this, 'hook_all_hooks' ), 100 );
-		remove_action( 'shutdown', array( $this, 'notification_switch' ) );
+		// remove_action( 'shutdown', array( $this, 'notification_switch' ) );
 		remove_action( 'shutdown', array( $this, 'filter_hooks_panel' ) );
 	}
 	
@@ -131,8 +131,18 @@ class ABC_Show_Hooks {
 			$href 	= add_query_arg( 'abc-hooks', 'show-action-hooks', $url );
 			$css 	= '';
 		}
+		$menu_title = __( 'Show Hooks' , 'show-hooks' );
+		if ( ( 'show-action-hooks' == $this->status ) ) {
+			$menu_title 	= __( 'Stop Showing Action Hooks' , 'show-hooks' );
+			$href 			= add_query_arg( 'abc-hooks', 'off', $url );
+		}
+		if ( ( 'show-filter-hooks' == $this->status ) ) {
+			$menu_title	= __( 'Stop Showing Action & Filter Hooks' , 'show-hooks' );
+			$href 	= add_query_arg( 'abc-hooks', 'off', $url );
+		}
+
 		$wp_admin_bar->add_menu( array(
-			'title'		=> '<span class="ab-icon"></span><span class="ab-label">' . __( 'Show Hooks' , 'show-hooks' ) . '</span>',
+			'title'		=> '<span class="ab-icon"></span><span class="ab-label">' . $menu_title . '</span>',
 			'id'		=> 'abc-main-menu',
 			'parent'	=> false,
 			'href'		=> $href,
