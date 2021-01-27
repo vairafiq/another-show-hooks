@@ -245,7 +245,7 @@ class ABC_Show_Hooks {
 		// Main Scripts
 		wp_register_script( 'abc-main-js', plugins_url( basename( plugin_dir_path( __FILE__ ) ) . '/assets/js/abc-main.js', basename( __FILE__ ) ), array('jquery'), '1.1.0' );
 		wp_enqueue_script( 'abc-main-js' );
-		wp_localize_script('abc-main-js', 'abc-main-js', array(
+		wp_localize_script('abc-main-js', 'abc_main_js', array(
 			'home_url' => get_home_url(),
 			'admin_url' => admin_url(),
 			'ajaxurl' => admin_url('admin-ajax.php')
