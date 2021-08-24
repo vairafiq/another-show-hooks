@@ -2,8 +2,8 @@
 Contributors: rafiq91
 Tags: hooks, debug, action, filter, hooksequence
 Requires at least: 4
-Tested up to: 5.6
-Stable tag: 0.1.3
+Tested up to: 5.8
+Stable tag: 0.1.5
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -38,6 +38,12 @@ Please note that in odd cases, due to the nature of actions and filters, the plu
 1. Here you can see Show Hooks doing it's thing on any page of your website.
 
 == Changelog ==
+
+= 0.1.5 =
+* Check - WordPess 5.8 compatibility
+
+= 0.1.4 =
+* Check - WordPess 5.7 compatibility
 
 = 0.1.3 =
 * Check - WordPess 5.6 compatibility
