@@ -438,7 +438,11 @@ class ABC_Show_Hooks {
 	function filter_hooks_panel() {
 		global $wp_filter, $wp_actions;
 		?>
+		
 		<div class="abc-nested-hooks-block <?php echo ( 'show-filter-hooks' == $this->status ) ? esc_html('abc-active') : '' ; ?> ">
+			<a href="" class="abc-show-hide">
+                <span class="abc-show-hide-text" aria-hidden="true">Hide</span>
+            </a>
 			<?php
 			foreach ( $this->all_hooks as $va_nested_value ) {
 				if ( 'action' == $va_nested_value['type'] || 'filter' == $va_nested_value['type'] ) {

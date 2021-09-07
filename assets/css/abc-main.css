@@ -399,3 +399,20 @@
 .abc-notification-switch .abc-notification-button:hover {
 	background: rgba(255, 255, 255, 0.11);
 }
+
+.abc-show-hide {
+	width: 32px;
+	height: 32px;
+	top: 5px;
+	right: 5px;
+	position: absolute;
+	-webkit-transform: none;
+			transform: none;
+	z-index: 2;
+	font-size: 11px;
+	padding: 0;
+	text-decoration: none;
+  }
+  .abc-hide{
+	  height: 25px;
+  }
