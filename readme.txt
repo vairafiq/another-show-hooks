@@ -3,7 +3,7 @@ Contributors: rafiq91
 Tags: hooks, debug, action, filter, hooksequence
 Requires at least: 4
 Tested up to: 5.8
-Stable tag: 0.1.5
+Stable tag: 0.1.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -23,6 +23,10 @@ Enjoy!
 
 Please note that in odd cases, due to the nature of actions and filters, the plugin may display a hook in place that disrupts the display of your site - in which case we always display the 'Hide Hooks' button so you can switch it back off. This won't disrupt the look of you site to anyone but you so don't worry.
 
+== Contribute to Show Hooks ==
+
+If you want to contribute to the project, you’re most welcome to make it happen. The full source code is available on [GitHub](https://github.com/vairafiq/show-hooks). If you find anything improbable, feel free to shoot a bug report or create a pull request.
+
 == Installation ==
 
 1. Install either via the WordPress.org plugin directory, or by uploading the files to your server.
@@ -38,6 +42,10 @@ Please note that in odd cases, due to the nature of actions and filters, the plu
 1. Here you can see Show Hooks doing it's thing on any page of your website.
 
 == Changelog ==
+
+= 0.1.6 =
+* New - Show/Hide link
+* Fix - Style issues
 
 = 0.1.5 =
 * Check - WordPess 5.8 compatibility
