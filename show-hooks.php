@@ -77,10 +77,18 @@ class ABC_Show_Hooks {
 	public function set_active_status() {
 		if ( ! isset( $this->status ) ) {
 			if ( ! isset(  $_COOKIE['abc_status'] ) ) {
-				setcookie( 'abc_status', 'off', time()+3600*24*100, '/' );
+				try{
+					setcookie( 'abc_status', 'off', time()+3600*24*100, '/' );
+				}catch( Exception $e ){
+					echo $e->getMessage();
+				}
 			}
 			if ( isset( $_REQUEST['abc-hooks'] ) ) {
-				setcookie( 'abc_status', sanitize_text_field( $_REQUEST['abc-hooks']), time()+3600*24*100, '/' );
+				try{
+					setcookie( 'abc_status', sanitize_text_field( $_REQUEST['abc-hooks']), time()+3600*24*100, '/' );
+				}catch( Exception $e ){
+					echo $e->getMessage();
+				}
 				$this->status = sanitize_text_field( $_REQUEST['abc-hooks'] );
 			}
 			elseif ( isset( $_COOKIE['abc_status']) ) {
