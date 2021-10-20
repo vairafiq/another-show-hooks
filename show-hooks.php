@@ -444,6 +444,11 @@ class ABC_Show_Hooks {
 	 * Filter Hooks Panel
 	 */
 	function filter_hooks_panel() {
+
+		if( rest_do_request( $_REQUEST ) ){
+			return;
+		}
+
 		global $wp_filter, $wp_actions;
 		?>
 		
