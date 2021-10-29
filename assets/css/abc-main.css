@@ -416,3 +416,13 @@
   .abc-hide{
 	  height: 25px;
   }
+
+  #wp-admin-bar-abc-main-menu .show-hooks-pro-menu-promotion .ab-item{
+	color: rgb(126, 17, 17);
+	font-weight: bold;
+	-webkit-animation: abc-pulse 1s infinite alternate;
+
+  }
+  #wp-admin-bar-abc-main-menu .show-hooks-pro-menu-promotion .ab-item:before {
+	background-color: #d3254b;
+}

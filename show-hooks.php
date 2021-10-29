@@ -179,6 +179,16 @@ class ABC_Show_Hooks {
 			'href'		=> $href,
 			'meta'		=> array( 'class' => $css ),
 		) );
+		$pro_link = 'https://exlac.com/product/show-hooks-pro/';
+		$title	= __( 'Show Hooks Pro' , 'show-hooks' );
+		$css 	= 'show-hooks-pro-menu-promotion';
+		$wp_admin_bar->add_menu( array(
+			'title'		=> $title,
+			'id'		=> 'abc-show-pro',
+			'parent'	=> 'abc-main-menu',
+			'href'		=> $pro_link,
+			'meta'		=> array( 'class' => $css, 'target' => '_blank', ),
+		) );
 		// De-suspend the hooks rendering.
 		$this->attach_hooks();
 	}
