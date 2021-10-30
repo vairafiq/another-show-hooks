@@ -23,6 +23,10 @@ Enjoy!
 
 Please note that in odd cases, due to the nature of actions and filters, the plugin may display a hook in place that disrupts the display of your site - in which case we always display the 'Hide Hooks' button so you can switch it back off. This won't disrupt the look of you site to anyone but you so don't worry.
 
+== Show Hooks Needs Your Support ​==
+
+It is hard to continue development and support for this free plugin without contributions from users like you. If you enjoy using Chow Hooks and find it useful, please consider making a donation. Your donation will help encourage and support the plugin’s continued development and better user support.
+
 == Contribute to Show Hooks ==
 
 If you want to contribute to the project, you’re most welcome to make it happen. The full source code is available on [GitHub](https://github.com/vairafiq/show-hooks). If you find anything improbable, feel free to shoot a bug report or create a pull request.
