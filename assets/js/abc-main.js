@@ -1,10 +1,10 @@
 jQuery( function($){
 	// show hide the hook flotting window
-	$(".icon-test").click(function(){
+	$(".abc-show-hooks-icon-test").click(function(){
 		$(".abc-nested-hooks-block").toggleClass("abc_show");
 		$(".abc-nested-hooks-block").addClass("abc_transition_fix");
 		$(".abc-nested-hooks-block").toggleClass("abc_slider-fix");
-		$(".icon-test").toggleClass("abc_icon-fix");
+		$(".abc-show-hooks-icon-test").toggleClass("abc_icon-fix");
 	  });
 
 	$(".abc-show-move-window").mouseover(function(){

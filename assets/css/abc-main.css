@@ -328,13 +328,13 @@
 	display: block;
 	position: fixed;
 }
-  .abc-nested-hooks-block .sub_div .abc-show-move-window {
+  .abc-nested-hooks-block .abc-show-hooks-sub-div .abc-show-move-window {
 	cursor: move;
 	text-align: center;
 	font-size: 15px;
 	padding: 10px;
   }
-.abc-nested-hooks-block .icon-test {
+.abc-nested-hooks-block .abc-show-hooks-icon-test {
 	width: 50px;
 	height: 50px;
 	background-color: #135E96;
@@ -350,16 +350,16 @@
 	cursor: pointer;
 	transition: 0.2s ease-in-out;
 }
-.abc-nested-hooks-block .icon-test .dashicons-leftright {
+.abc-nested-hooks-block .abc-show-hooks-icon-test .dashicons-leftright {
 	color: white;
 	font-size: 35px;
 }
-.abc-nested-hooks-block .icon-test .dashicons-leftright:before {
+.abc-nested-hooks-block .abc-show-hooks-icon-test .dashicons-leftright:before {
 	position: absolute;
 	top: 15%;
 	left: 15%;
 }
-.abc-nested-hooks-block .sub_div {
+.abc-nested-hooks-block .abc-show-hooks-sub-div {
 	width: 385px;
 	height: 100%;
 	background: white;

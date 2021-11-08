@@ -459,11 +459,11 @@ class ABC_Show_Hooks {
 		?>
 		
 		<div  id="abc-dragable-hook-panel" class="abc-nested-hooks-block <?php echo ( 'show-filter-hooks' == $this->status ) ? esc_html('abc-active') : '' ; ?> ">
-			<div id="atdlc_collapse-in" class="icon-test">
+			<div class="abc-show-hooks-icon-test">
 				<!-- <i class="la la-exchange"></i> -->
 				<span class="dashicons dashicons-leftright"></span>
 			</div>
-			<div class="sub_div">
+			<div class="abc-show-hooks-sub-div">
 				<div class="abc-show-move-window">
 					<span class="abc-show-move-text" aria-hidden="true"><span class="dashicons dashicons-move"></span> Move Window</span>
 				</div>
