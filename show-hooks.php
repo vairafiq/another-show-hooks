@@ -455,31 +455,33 @@ class ABC_Show_Hooks {
 	 */
 	function filter_hooks_panel() {
 
-		if( rest_do_request( $_REQUEST ) ){
-			return;
-		}
-
 		global $wp_filter, $wp_actions;
 		?>
 		
-		<div class="abc-nested-hooks-block <?php echo ( 'show-filter-hooks' == $this->status ) ? esc_html('abc-active') : '' ; ?> ">
-			<a href="" class="abc-show-hide">
-                <span class="abc-show-hide-text" aria-hidden="true">Hide</span>
-            </a>
-			<?php
-			foreach ( $this->all_hooks as $va_nested_value ) {
-				if ( 'action' == $va_nested_value['type'] || 'filter' == $va_nested_value['type'] ) {
-					$this->render_action( $va_nested_value );
+		<div  id="abc-dragable-hook-panel" class="abc-nested-hooks-block <?php echo ( 'show-filter-hooks' == $this->status ) ? esc_html('abc-active') : '' ; ?> ">
+			<div id="atdlc_collapse-in" class="icon-test">
+				<!-- <i class="la la-exchange"></i> -->
+				<span class="dashicons dashicons-leftright"></span>
+			</div>
+			<div class="sub_div">
+				<div class="abc-show-move-window">
+					<span class="abc-show-move-text" aria-hidden="true"><span class="dashicons dashicons-move"></span> Move Window</span>
+				</div>
+				<?php
+				foreach ( $this->all_hooks as $va_nested_value ) {
+					if ( 'action' == $va_nested_value['type'] || 'filter' == $va_nested_value['type'] ) {
+						$this->render_action( $va_nested_value );
+					}
+					else{
+						?>
+						<div class="abc-collection-divider">
+							<?php echo esc_attr($va_nested_value['ID']); ?>
+						</div>
+						<?php
+					}
 				}
-				else{
-					?>
-					<div class="abc-collection-divider">
-						<?php echo esc_attr($va_nested_value['ID']); ?>
-					</div>
-					<?php
-				}
-			}
-			?>
+				?>
+			</div>
 		</div>
 		<?php
 	}
