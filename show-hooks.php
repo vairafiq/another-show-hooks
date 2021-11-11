@@ -2,8 +2,8 @@
 /**
 * Plugin Name: Show Hooks
 * Description: Debug your code quickly by showing the origin of action and filter hooks sequentially on a page.
-* Version: 0.1.6
-* Author: rafiq91
+* Version: 0.2
+* Author: rafiq91, exlac
 * License: GPLv2 or later
 * Text Domain: show-hooks
 * Domain Path: /languages/

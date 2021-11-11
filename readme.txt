@@ -1,9 +1,9 @@
 === Show Hooks ===
-Contributors: rafiq91
+Contributors: rafiq91, exlac
 Tags: hooks, debug, action, filter, hooksequence
 Requires at least: 4
 Tested up to: 5.8
-Stable tag: 0.1.6
+Stable tag: 0.2
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -27,6 +27,13 @@ Please note that in odd cases, due to the nature of actions and filters, the plu
 
 It is hard to continue development and support for this free plugin without contributions from users like you. If you enjoy using Chow Hooks and find it useful, please consider making a donation. Your donation will help encourage and support the plugin’s continued development and better user support.
 
+🎉🎉 Checkout the [Show Hooks Pro](https://exlac.com/product/show-hooks-pro/)
+
+> Hook search by prefix
+> Hook management with user roles
+> Disable callback functions directly for UI
+> Auto enable callback and more
+
 == Contribute to Show Hooks ==
 
 If you want to contribute to the project, you’re most welcome to make it happen. The full source code is available on [GitHub](https://github.com/vairafiq/show-hooks). If you find anything improbable, feel free to shoot a bug report or create a pull request.
@@ -46,6 +53,10 @@ If you want to contribute to the project, you’re most welcome to make it happe
 1. Here you can see Show Hooks doing it's thing on any page of your website.
 
 == Changelog ==
+
+= 0.2 =
+* New - Draggable hook panel
+* Fix - Style issues
 
 = 0.1.6 =
 * New - Show/Hide link
