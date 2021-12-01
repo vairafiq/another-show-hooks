@@ -1,5 +1,6 @@
 === Show Hooks ===
 Contributors: rafiq91, exlac
+Donate link: https://exlac.com/product/show-hooks-pro/
 Tags: hooks, debug, action, filter, hooksequence
 Requires at least: 4
 Tested up to: 5.8
