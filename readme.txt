@@ -4,7 +4,7 @@ Donate link: https://exlac.com/product/show-hooks-pro/
 Tags: hooks, debug, action, filter, hooksequence
 Requires at least: 4
 Tested up to: 5.8
-Stable tag: 0.2
+Stable tag: 0.3
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -52,29 +52,43 @@ If you want to contribute to the project, you’re most welcome to make it happe
 
 == Changelog ==
 
+= 0.3 =
+
+* Fix - Conflict with WooCommerce checkout page
+* Fix - Conflict with Redirection plugin
+* Fix - Fiter hooks panel showing when only actions are selected
+
 = 0.2 =
+
 * New - Draggable hook panel
 * Fix - Style issues
 
 = 0.1.6 =
+
 * New - Show/Hide link
 * Fix - Style issues
 
 = 0.1.5 =
+
 * Check - WordPess 5.8 compatibility
 
 = 0.1.4 =
+
 * Check - WordPess 5.7 compatibility
 
 = 0.1.3 =
+
 * Check - WordPess 5.6 compatibility
 * Remove - Show Showing Hooks notification bar from top-right corner
 
 = 0.1.2 =
+
 * Add - Hooks linked to WordPress Codex
 
 = 0.1.1 =
+
 * Improve - Visual element mapping on page
 
 = 0.1.0 =
+
 * Beta release.

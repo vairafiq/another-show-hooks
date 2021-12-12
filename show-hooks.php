@@ -2,7 +2,7 @@
 /**
 * Plugin Name: Show Hooks
 * Description: Debug your code quickly by showing the origin of action and filter hooks sequentially on a page.
-* Version: 0.2
+* Version: 0.3
 * Author: rafiq91, exlac
 * License: GPLv2 or later
 * Text Domain: show-hooks
@@ -107,7 +107,8 @@ class ABC_Show_Hooks {
 		if ( $this->status == 'show-action-hooks' || $this->status == 'show-filter-hooks' ) {
 			add_filter( 'all', array( $this, 'hook_all_hooks' ), 100 );
 			// add_action( 'shutdown', array( $this, 'notification_switch' ) );
-			add_action( 'shutdown', array( $this, 'filter_hooks_panel' ) );
+			add_action( 'wp_footer', array( $this, 'filter_hooks_panel' ) );
+			add_action( 'admin_footer', array( $this, 'filter_hooks_panel' ) );
 		}
 	}
 	
@@ -117,7 +118,8 @@ class ABC_Show_Hooks {
 	public function detach_hooks() {
 		remove_filter( 'all', array( $this, 'hook_all_hooks' ), 100 );
 		// remove_action( 'shutdown', array( $this, 'notification_switch' ) );
-		remove_action( 'shutdown', array( $this, 'filter_hooks_panel' ) );
+		remove_action( 'wp_footer', array( $this, 'filter_hooks_panel' ) );
+		remove_action( 'admin_footer', array( $this, 'filter_hooks_panel' ) );
 	}
 	
 	
@@ -371,7 +373,7 @@ class ABC_Show_Hooks {
 				<?php
 			}
 			// Main - Write the action hook name.
-			//echo esc_html( $args['ID'] );
+			// echo esc_html( $args['ID'] );
 			echo esc_attr( $args['ID'] );
 			// Write the count number if any function are hooked.
 			if ( $nested_hooks_count ) { ?>
@@ -455,6 +457,10 @@ class ABC_Show_Hooks {
 	 */
 	function filter_hooks_panel() {
 
+		if( $this->status !== 'show-filter-hooks' ){
+			return;
+		}
+		
 		global $wp_filter, $wp_actions;
 		?>
 		
