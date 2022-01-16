@@ -32,6 +32,13 @@ It is hard to continue development and support for this free plugin without cont
 🔥Upgrading to [Show Hooks Pro](https://exlac.com/product/show-hooks-pro/)
  ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ [Rating the plugin](https://wordpress.org/support/plugin/show-hooks/reviews/?filter=5#new-post).
 
+== 🔥 WHAT’S NEXT ==
+
+If you like Show Hooks, then consider checking out our other WordPress Plugins
+
+🤖 [The Intelligent](https://wordpress.org/plugins/the-intelligent/) – A machine learning artificial intelligence that analyses all the sales of your WooCommerce shop in a smart way, it learns from them, and then it is able to predict the most relevant products suggession to your customers, thus increasing sales 💰
+
+
 == Contribute to Show Hooks ==
 
 If you want to contribute to the project, you’re most welcome to make it happen. The full source code is available on [GitHub](https://github.com/vairafiq/show-hooks). If you find anything improbable, feel free to shoot a bug report or create a pull request.
