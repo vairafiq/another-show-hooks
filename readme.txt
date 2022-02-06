@@ -3,8 +3,8 @@ Contributors: rafiq91, exlac
 Donate link: https://exlac.com/product/show-hooks-pro/
 Tags: hooks, debug, action, filter, hooksequence
 Requires at least: 4
-Tested up to: 5.8
-Stable tag: 0.3
+Tested up to: 5.9
+Stable tag: 0.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -58,6 +58,10 @@ If you want to contribute to the project, you’re most welcome to make it happe
 1. Here you can see Show Hooks doing its thing on any page of your website.
 
 == Changelog ==
+
+= 0.4 =
+
+* Check - WordPess 5.9 compatibility
 
 = 0.3 =
 
