@@ -391,7 +391,7 @@ class ABC_Show_Hooks {
 							<?php
 								$type = ucwords(esc_attr($args['type']));
 								$id = esc_attr($args['ID']);
-								$url = "https://codex.wordpress.org/Plugin_API/{$type}_Reference/{$id}";
+								$url = "https://developer.wordpress.org/reference/hooks/{$id}";
 								echo  "<strong>{$type}:</strong> <a href='{$url}' target='_blank'>{$id}</a>";
 							?>
 						</li>
