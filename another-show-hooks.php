@@ -1,13 +1,29 @@
 <?php
 /**
-* Plugin Name: Show Hooks
-* Description: Debug your code quickly by showing the origin of action and filter hooks sequentially on a page.
-* Version: 0.4
-* Author: rafiq91, exlac
-* License: GPLv2 or later
-* Text Domain: show-hooks
-* Domain Path: /languages/
-*/
+ * AnotherShowHooks
+ *
+ * @package           AnotherShowHooks
+ * @author            Exlac
+ * @copyright         2022 Exlac
+ * @license           GPL-2.0-or-later
+ *
+ * @wordpress-plugin
+ * Plugin Name:       Another Show Hooks
+ * Plugin URI:        https://github.com/vairafiq/another-show-hooks
+ * Description:       Debug your code quickly by showing the origin of action and filter hooks sequentially on a page.
+ * Version:           1.0.0
+ * Requires at least: 5.2
+ * Requires PHP:      7.2
+ * Author:            Exlac
+ * Author URI:        https://exlac.com
+ * Text Domain:       another-show-hooks
+ * License:           GPL v2 or later
+ * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+ * Update URI:        https://github.com/vairafiq/another-show-hooks
+ */
+
+use Connections_Directory\Utility\_escape;
+
 /*
 This program is free software originally frocked form @stuartobrien; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -26,7 +42,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 defined( 'ABSPATH' ) or die( 'No Trespassing!' ); // Security
 
-class ABC_Show_Hooks {
+class Another_Show_Hooks {
 	private $status;
 	private $all_hooks = array();
 	private $recent_hooks = array();
@@ -54,7 +70,7 @@ class ABC_Show_Hooks {
 		
 		// Use this to set any tags known to cause display problems.
 		// Will be display in sidebar.
-		$this->ignore_hooks = apply_filters( 'abc_show_hooks_ignore_hooks', array(
+		$this->ignore_hooks = apply_filters( 'ash_show_hooks_ignore_hooks', array(
 			'attribute_escape',
 			'body_class',
 			'the_post',
@@ -76,23 +92,23 @@ class ABC_Show_Hooks {
 	 */
 	public function set_active_status() {
 		if ( ! isset( $this->status ) ) {
-			if ( ! isset(  $_COOKIE['abc_status'] ) ) {
+			if ( ! isset(  $_COOKIE['ash_status'] ) ) {
 				try{
-					setcookie( 'abc_status', 'off', time()+3600*24*100, '/' );
+					setcookie( 'ash_status', 'off', time()+3600*24*100, '/' );
 				}catch( Exception $e ){
 					echo $e->getMessage();
 				}
 			}
-			if ( isset( $_REQUEST['abc-hooks'] ) ) {
+			if ( isset( $_REQUEST['ash-hooks'] ) ) {
 				try{
-					setcookie( 'abc_status', sanitize_text_field( $_REQUEST['abc-hooks']), time()+3600*24*100, '/' );
+					setcookie( 'ash_status', sanitize_text_field( $_REQUEST['ash-hooks']), time()+3600*24*100, '/' );
 				}catch( Exception $e ){
 					echo $e->getMessage();
 				}
-				$this->status = sanitize_text_field( $_REQUEST['abc-hooks'] );
+				$this->status = sanitize_text_field( $_REQUEST['ash-hooks'] );
 			}
-			elseif ( isset( $_COOKIE['abc_status']) ) {
-				$this->status = sanitize_text_field( $_COOKIE['abc_status']);
+			elseif ( isset( $_COOKIE['ash_status']) ) {
+				$this->status = sanitize_text_field( $_COOKIE['ash_status']);
 			}
 			else{
 				$this->status = 'off';
@@ -129,68 +145,70 @@ class ABC_Show_Hooks {
 	function admin_bar_menu( $wp_admin_bar ) {
 		// Suspend the hooks rendering.
 		$this->detach_hooks();
-		// Setup a base URL and clear it of the intial `abc-hooks` arg.
-		$url = remove_query_arg( 'abc-hooks' );
+		// Setup a base URL and clear it of the intial `ash-hooks` arg.
+		$url = remove_query_arg( 'ash-hooks' );
 		if ( 'show-action-hooks' == $this->status ) {
-			$title 	= __( 'Stop Showing Action Hooks' , 'show-hooks' );
-			$href 	= add_query_arg( 'abc-hooks', 'off', $url );
-			$css 	= 'abc-hooks-on abc-hooks-normal';
+			$title 	= __( 'Stop Showing Action Hooks' , 'another-show-hooks' );
+			$href 	= add_query_arg( 'ash-hooks', 'off', $url );
+			$css 	= 'ash-hooks-on ash-hooks-normal';
 		}
 		else {
-			$title 	= __( 'Show Action Hooks' , 'show-hooks' );
-			$href 	= add_query_arg( 'abc-hooks', 'show-action-hooks', $url );
+			$title 	= __( 'Show Action Hooks' , 'another-show-hooks' );
+			$href 	= add_query_arg( 'ash-hooks', 'show-action-hooks', $url );
 			$css 	= '';
 		}
-		$menu_title = __( 'Show Hooks' , 'show-hooks' );
+		$menu_title = __( 'Show Hooks' , 'another-show-hooks' );
 		if ( ( 'show-action-hooks' == $this->status ) ) {
-			$menu_title 	= __( 'Stop Showing Action Hooks' , 'show-hooks' );
-			$href 			= add_query_arg( 'abc-hooks', 'off', $url );
+			$menu_title 	= __( 'Stop Showing Action Hooks' , 'another-show-hooks' );
+			$href 			= add_query_arg( 'ash-hooks', 'off', $url );
 		}
 		if ( ( 'show-filter-hooks' == $this->status ) ) {
-			$menu_title	= __( 'Stop Showing Action & Filter Hooks' , 'show-hooks' );
-			$href 	= add_query_arg( 'abc-hooks', 'off', $url );
+			$menu_title	= __( 'Stop Showing Action & Filter Hooks' , 'another-show-hooks' );
+			$href 	= add_query_arg( 'ash-hooks', 'off', $url );
 		}
 
 		$wp_admin_bar->add_menu( array(
 			'title'		=> '<span class="ab-icon"></span><span class="ab-label">' . $menu_title . '</span>',
-			'id'		=> 'abc-main-menu',
+			'id'		=> 'ash-main-menu',
 			'parent'	=> false,
 			'href'		=> $href,
 		) );
 		$wp_admin_bar->add_menu( array(
 			'title'		=> $title,
-			'id'		=> 'abc-simply-show-hooks',
-			'parent'	=> 'abc-main-menu',
+			'id'		=> 'ash-simply-show-hooks',
+			'parent'	=> 'ash-main-menu',
 			'href'		=> $href,
 			'meta'		=> array( 'class' => $css ),
 		) );
 		if ( $this->status=="show-filter-hooks" ) {
-			$title	= __( 'Stop Showing Action & Filter Hooks' , 'show-hooks' );
-			$href 	= add_query_arg( 'abc-hooks', 'off', $url );
-			$css 	= 'abc-hooks-on abc-hooks-sidebar';
+			$title	= __( 'Stop Showing Action & Filter Hooks' , 'another-show-hooks' );
+			$href 	= add_query_arg( 'ash-hooks', 'off', $url );
+			$css 	= 'ash-hooks-on ash-hooks-sidebar';
 		}
 		else {
-			$title	= __( 'Show Action & Filter Hooks' , 'show-hooks' );
-			$href 	= add_query_arg( 'abc-hooks', 'show-filter-hooks', $url );
+			$title	= __( 'Show Act  ion & Filter Hooks' , 'another-show-hooks' );
+			$href 	= add_query_arg( 'ash-hooks', 'show-filter-hooks', $url );
 			$css 	= '';
 		}
+
+
 		$wp_admin_bar->add_menu( array(
 			'title'		=> $title,
-			'id'		=> 'abc-show-all-hooks',
-			'parent'	=> 'abc-main-menu',
+			'id'		=> 'ash-show-all-hooks',
+			'parent'	=> 'ash-main-menu',
 			'href'		=> $href,
 			'meta'		=> array( 'class' => $css ),
 		) );
-		$pro_link = 'https://exlac.com/product/show-hooks-pro/';
-		$title	= __( 'Show Hooks Pro' , 'show-hooks' );
-		$css 	= 'show-hooks-pro-menu-promotion';
-		$wp_admin_bar->add_menu( array(
-			'title'		=> $title,
-			'id'		=> 'abc-show-pro',
-			'parent'	=> 'abc-main-menu',
-			'href'		=> $pro_link,
-			'meta'		=> array( 'class' => $css, 'target' => '_blank', ),
-		) );
+		// $pro_link = 'https://exlac.com/product/show-hooks-pro/';
+		// $title	= __( 'Show Hooks Pro' , 'another-show-hooks' );
+		// $css 	= 'show-hooks-pro-menu-promotion';
+		// $wp_admin_bar->add_menu( array(
+		// 	'title'		=> $title,
+		// 	'id'		=> 'ash-show-pro',
+		// 	'parent'	=> 'ash-main-menu',
+		// 	'href'		=> $pro_link,
+		// 	'meta'		=> array( 'class' => $css, 'target' => '_blank', ),
+		// ) );
 		// De-suspend the hooks rendering.
 		$this->attach_hooks();
 	}
@@ -199,7 +217,7 @@ class ABC_Show_Hooks {
 	function add_builder_edit_button_css() {
 		?>
 		<style>
-		#wp-admin-bar-abc-main-menu .ab-icon:before{
+		#wp-admin-bar-ash-main-menu .ab-icon:before{
 			font-family: "dashicons" !important;
 			content: "\f323" !important;
 			font-size: 16px !important;
@@ -216,12 +234,12 @@ class ABC_Show_Hooks {
 	function notification_switch() {
 		// Suspend the hooks rendering.
 		$this->detach_hooks();
-		// Setup a base URL and clear it of the intial `abc-hooks` arg.
-		$url = add_query_arg( 'abc-hooks', 'off' );
+		// Setup a base URL and clear it of the intial `ash-hooks` arg.
+		$url = add_query_arg( 'ash-hooks', 'off' );
 		?>
-		<a class="abc-notification-switch" href="<?php echo esc_url( $url ); ?>">
-			<span class="abc-notification-indicator"></span>
-			<?php echo _e( 'Stop Showing Hooks' , 'show-hooks' ); ?>
+		<a class="ash-notification-switch" href="<?php echo esc_url( $url ); ?>">
+			<span class="ash-notification-indicator"></span>
+			<?php esc_attr_e( 'Stop Showing Hooks', 'another-show-hooks' ); ?>
 		</a>
 		<?php
 		// De-suspend the hooks rendering.
@@ -260,12 +278,12 @@ class ABC_Show_Hooks {
 	
 	public function enqueue_script($screen) {
 		// Main Styles
-		wp_register_style( 'abc-main-css', plugins_url( basename( plugin_dir_path( __FILE__ ) ) . '/assets/css/abc-main.css', basename( __FILE__ ) ), '', '1.1.0', 'screen' );
-		wp_enqueue_style( 'abc-main-css' );
+		wp_register_style( 'ash-main-css', plugins_url( basename( plugin_dir_path( __FILE__ ) ) . '/assets/css/ash-main.css', basename( __FILE__ ) ), '', '1.1.0', 'screen' );
+		wp_enqueue_style( 'ash-main-css' );
 		// Main Scripts
-		wp_register_script( 'abc-main-js', plugins_url( basename( plugin_dir_path( __FILE__ ) ) . '/assets/js/abc-main.js', basename( __FILE__ ) ), array('jquery'), '1.1.0' );
-		wp_enqueue_script( 'abc-main-js' );
-		wp_localize_script('abc-main-js', 'abc_main_js', array(
+		wp_register_script( 'ash-main-js', plugins_url( basename( plugin_dir_path( __FILE__ ) ) . '/assets/js/ash-main.js', basename( __FILE__ ) ), array('jquery'), '1.1.0' );
+		wp_enqueue_script( 'ash-main-js' );
+		wp_localize_script('ash-main-js', 'ash_main_js', array(
 			'home_url' => get_home_url(),
 			'admin_url' => admin_url(),
 			'ajaxurl' => admin_url('admin-ajax.php')
@@ -276,7 +294,7 @@ class ABC_Show_Hooks {
 	 * Localization
 	 */
 	public function load_translation() {
-		load_plugin_textdomain( 'show-hooks', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+		load_plugin_textdomain( 'another-show-hooks', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 	}
 	
 	/**
@@ -360,16 +378,16 @@ class ABC_Show_Hooks {
 			}
 		}
 		?>
-		<span style="display:none;" class="abc-hook abc-hook-<?php echo esc_attr($args['type']) ?> <?php echo ( $nested_hooks ) ? esc_html('abc-hook-has-hooks') : '' ; ?>" >
+		<span style="display:none;" class="ash-hook ash-hook-<?php echo esc_attr($args['type']); ?> <?php echo ( $nested_hooks ) ? esc_html('ash-hook-has-hooks') : ''; ?>" >
 			<?php
 			if ( 'action' == $args['type'] ) {
 				?>
-				<span class="abc-hook-type abc-hook-type">A</span>
+				<span class="ash-hook-type ash-hook-type">A</span>
 				<?php
 			}
 			else if ( 'filter' == $args['type'] ) {
 				?>
-				<span class="abc-hook-type abc-hook-type">F</span>
+				<span class="ash-hook-type ash-hook-type">F</span>
 				<?php
 			}
 			// Main - Write the action hook name.
@@ -377,7 +395,7 @@ class ABC_Show_Hooks {
 			echo esc_attr( $args['ID'] );
 			// Write the count number if any function are hooked.
 			if ( $nested_hooks_count ) { ?>
-				<span class="abc-hook-count">
+				<span class="ash-hook-count">
 					<?php echo esc_attr($nested_hooks_count); ?>
 				</span>
 				<?php
@@ -386,8 +404,8 @@ class ABC_Show_Hooks {
 			if ( isset( $wp_filter[$args['ID']] ) ):
 				$nested_hooks = $wp_filter[$args['ID']];
 				if ( $nested_hooks ): ?>
-					<ul class="abc-hook-dropdown">
-						<li class="abc-hook-heading">
+					<ul class="ash-hook-dropdown">
+						<li class="ash-hook-heading">
 							<?php
 								$type = ucwords(esc_attr($args['type']));
 								$id = esc_attr($args['ID']);
@@ -399,8 +417,8 @@ class ABC_Show_Hooks {
 						foreach ( $nested_hooks as $nested_key => $nested_value ) :
 							// Show the priority number if the following hooked functions
 							?>
-							<li class="abc-priority">
-								<span class="abc-priority-label"><strong><?php echo esc_html('Priority:'); /* _e('Priority', 'show-hooks') */ ?></strong> <?php echo esc_attr($nested_key); ?></span>
+							<li class="ash-priority">
+								<span class="ash-priority-label"><strong><?php echo esc_html('Priority:'); /* _e('Priority', 'another-show-hooks') */ ?></strong> <?php echo esc_attr($nested_key); ?></span>
 							</li>
 							<?php
 							foreach ( $nested_value as $nested_inner_key => $nested_inner_value ) :
@@ -412,7 +430,7 @@ class ABC_Show_Hooks {
 										
 										// Hooked function ( of type object->method() )
 										?>
-										<span class="abc-function-string">
+										<span class="ash-function-string">
 											<?php
 											$classname = false;
 											if ( is_object( $nested_inner_value['function'][0] ) || is_string( $nested_inner_value['function'][0] ) ) {
@@ -432,7 +450,7 @@ class ABC_Show_Hooks {
 									else :
 										// Hooked function ( of type function() )
 										?>
-										<span class="abc-function-string">
+										<span class="ash-function-string">
 											<?php echo esc_attr($nested_inner_key); ?>
 										</span>
 										<?php
@@ -464,14 +482,14 @@ class ABC_Show_Hooks {
 		global $wp_filter, $wp_actions;
 		?>
 		
-		<div  id="abc-dragable-hook-panel" class="abc-nested-hooks-block <?php echo ( 'show-filter-hooks' == $this->status ) ? esc_html('abc-active') : '' ; ?> ">
-			<div class="abc-show-hooks-icon-test">
+		<div  id="ash-dragable-hook-panel" class="ash-nested-hooks-block <?php echo ( 'show-filter-hooks' == $this->status ) ? esc_html('ash-active') : '' ; ?> ">
+			<div class="ash-show-hooks-icon-test">
 				<!-- <i class="la la-exchange"></i> -->
 				<span class="dashicons dashicons-leftright"></span>
 			</div>
-			<div class="abc-show-hooks-sub-div">
-				<div class="abc-show-move-window">
-					<span class="abc-show-move-text" aria-hidden="true"><span class="dashicons dashicons-move"></span> Move Window</span>
+			<div class="ash-show-hooks-sub-div">
+				<div class="ash-show-move-window">
+					<span class="ash-show-move-text" aria-hidden="true"><span class="dashicons dashicons-move"></span> Move Window</span>
 				</div>
 				<?php
 				foreach ( $this->all_hooks as $va_nested_value ) {
@@ -480,7 +498,7 @@ class ABC_Show_Hooks {
 					}
 					else{
 						?>
-						<div class="abc-collection-divider">
+						<div class="ash-collection-divider">
 							<?php echo esc_attr($va_nested_value['ID']); ?>
 						</div>
 						<?php
@@ -494,22 +512,22 @@ class ABC_Show_Hooks {
 	
 	function plugin_active() {
 		// Filters to deactivate our plugin - backend, frontend or sitewide.
-		// add_filter( 'abc_show_hooks_active', '__return_false' );
-		// add_filter( 'abc_show_hooks_backend_active', '__return_false' );
-		// add_filter( 'abc_show_hooks_frontend_active', '__return_false' );
-		if ( ! apply_filters( 'abc_show_hooks_active', TRUE ) ) {
+		// add_filter( 'ash_show_hooks_active', '__return_false' );
+		// add_filter( 'ash_show_hooks_backend_active', '__return_false' );
+		// add_filter( 'ash_show_hooks_frontend_active', '__return_false' );
+		if ( ! apply_filters( 'ash_show_hooks_active', TRUE ) ) {
 			// Sitewide.
 			return FALSE;
 		}
 		if ( is_admin() ) {
 			// Backend.
-			if ( ! apply_filters( 'abc_show_hooks_backend_active', TRUE ) ) return FALSE;
+			if ( ! apply_filters( 'ash_show_hooks_backend_active', TRUE ) ) return FALSE;
 		}
 		else {
 			// Frontend.
-			if ( ! apply_filters( 'abc_show_hooks_frontend_active', TRUE ) ) return FALSE;
+			if ( ! apply_filters( 'ash_show_hooks_frontend_active', TRUE ) ) return FALSE;
 		}
 		return TRUE;
 	}
 }
-ABC_Show_Hooks::get_instance();
+Another_Show_Hooks::get_instance();
