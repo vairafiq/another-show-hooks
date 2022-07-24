@@ -22,8 +22,6 @@
  * Update URI:        https://github.com/vairafiq/another-show-hooks
  */
 
-use Connections_Directory\Utility\_escape;
-
 /*
 This program is free software originally frocked form @stuartobrien; you can redistribute it and/or
 modify it under the terms of the GNU General Public License

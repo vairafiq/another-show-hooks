@@ -2,10 +2,10 @@
 Contributors: exlac
 Donate link: https://exlac.com/product/show-hooks-pro/
 Tags: hooks, debug, action, filter, hook sequence
-Requires at least: 4
-Requires PHP: 7.4
-Tested up to: 5.9
-Stable tag: 0.4
+Requires at least: 5.2
+Requires PHP: 7.2
+Tested up to: 6.0
+Stable tag: 1.0.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -60,6 +60,6 @@ Using FTP
 
 == Changelog ==
 
-= 1.0 =
+= 1.0.0 =
 
 * Initial release
