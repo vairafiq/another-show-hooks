@@ -11,7 +11,7 @@
  * Plugin Name:       Another Show Hooks
  * Plugin URI:        https://github.com/vairafiq/another-show-hooks
  * Description:       Debug your code quickly by showing the origin of action and filter hooks sequentially on a page.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Requires at least: 5.2
  * Requires PHP:      7.2
  * Author:            Exlac
@@ -197,16 +197,16 @@ class Another_Show_Hooks {
 			'href'		=> $href,
 			'meta'		=> array( 'class' => $css ),
 		) );
-		// $pro_link = 'https://exlac.com/product/show-hooks-pro/';
-		// $title	= __( 'Show Hooks Pro' , 'another-show-hooks' );
-		// $css 	= 'show-hooks-pro-menu-promotion';
-		// $wp_admin_bar->add_menu( array(
-		// 	'title'		=> $title,
-		// 	'id'		=> 'ash-show-pro',
-		// 	'parent'	=> 'ash-main-menu',
-		// 	'href'		=> $pro_link,
-		// 	'meta'		=> array( 'class' => $css, 'target' => '_blank', ),
-		// ) );
+		$pro_link = 'https://exlac.com/product/show-hooks-pro/';
+		$title	= __( 'Show Hooks Pro' , 'another-show-hooks' );
+		$css 	= 'show-hooks-pro-menu-promotion';
+		$wp_admin_bar->add_menu( array(
+			'title'		=> $title,
+			'id'		=> 'ash-show-pro',
+			'parent'	=> 'ash-main-menu',
+			'href'		=> $pro_link,
+			'meta'		=> array( 'class' => $css, 'target' => '_blank', ),
+		) );
 		// De-suspend the hooks rendering.
 		$this->attach_hooks();
 	}
