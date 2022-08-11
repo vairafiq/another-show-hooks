@@ -13,14 +13,35 @@ Show the origin of an action or filter hook sequentially which helps a developer
 
 == Description ==
 
-A sequential and visual representation of WordPress action and filter hooks. Up until now, the way theme and plugin developers find where to hook into with their add_action() and add_filter() functions is either to search through the WordPress codebase or find a reference to the hook in the codex.
+A sequential and visual representation of WordPress action and filter hooks. This is a Developer tool so if you are a developer then it might be a life-saver plugin.
 
+== How? ==
 
-== 🔥 WHAT’S NEXT ==
+Let's have a question for you! 
 
-If you like Show Hooks, then consider checking out our other WordPress Plugins
+Which hook fire first?
 
-🤖 [The Intelligent](https://wordpress.org/plugins/the-intelligent/) – A machine learning artificial intelligence that analyses all the sales of your WooCommerce shop in a smart way, it learns from them, and then it is able to predict the most relevant product suggestions to your customers, thus increasing sales 💰
+1. `admin_init`
+2. `init`
+
+A bit confusing, right? `init` runs first and after firing almost 100 hooks `admin_init` runs. Before developing the plugin I had to jump over google or wp handbook which kills my development time and makes my project delayed.
+
+To get rid of this problem, Another Show Hooks present you with a graphical overview right from your web screen. 
+
+== Some cool features ==
+
+👉 Graphical Presentation
+👉 Count the total number of uses
+👉 List out all the callback functions with **priority**
+👉 Get core code reference
+👉 Draggable hook window for flexible debugging
+
+🔥🔥🔥 **[Pro Features](https://exlac.com/product/show-hooks-pro/)**🔥🔥🔥 
+
+>*Hook search with the prefix
+>*Advanced debugging with selective user roles
+>*Disable callback function directly from pages
+>*Automation
 
 == Contribute to Show Hooks ==
 
@@ -57,6 +78,11 @@ Using FTP
 4. Upload the files from the folder extracted in Step 2.
 4. Activate the plugin on the Plugins admin page.
 
+== Screenshots ==
+
+1. Firing sequence of init and admin_init
+2. Dragable hook window
+3. Uses of init hook
 
 == Changelog ==
 
