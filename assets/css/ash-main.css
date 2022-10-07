@@ -662,3 +662,7 @@ Disable function button
   #wp-admin-bar-ash-main-menu .show-hooks-pro-menu-promotion .ab-item:before {
 	background-color: #d3254b;
 }
+/* Oxygen compatiblity */
+.oxygen-body {
+	display: block !important;
+}

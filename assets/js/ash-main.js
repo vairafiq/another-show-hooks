@@ -16,8 +16,11 @@ jQuery( function($){
 	});
 
 
-	const wrapper = document.querySelector("#ash-dragable-hook-panel"),
-    header = wrapper.querySelector(".ash-show-move-window");
+    const wrapper = document.querySelector("#ash-dragable-hook-panel");
+    var header = '';
+    if( wrapper !== null ) {
+      header = wrapper.querySelector(".ash-show-move-window");
+    }
 
     function onDrag({movementX, movementY}){
       let getStyle = window.getComputedStyle(wrapper);
@@ -27,13 +30,15 @@ jQuery( function($){
       wrapper.style.top = `${topVal + movementY}px`;
     }
 
-    header.addEventListener("mousedown", ()=>{
-      header.classList.add("ash_active");
-      header.addEventListener("mousemove", onDrag);
-    });
-
-    document.addEventListener("mouseup", ()=>{
-      header.classList.remove("ash_active");
-      header.removeEventListener("mousemove", onDrag);
-    });
+    if( header ) {
+      header.addEventListener("mousedown", ()=>{
+        header.classList.add("ash_active");
+        header.addEventListener("mousemove", onDrag);
+      });
+  
+      document.addEventListener("mouseup", ()=>{
+        header.classList.remove("ash_active");
+        header.removeEventListener("mousemove", onDrag);
+      });
+    }
 });

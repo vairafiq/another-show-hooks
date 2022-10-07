@@ -11,7 +11,7 @@
  * Plugin Name:       Another Show Hooks
  * Plugin URI:        https://github.com/vairafiq/another-show-hooks
  * Description:       Debug your code quickly by showing the origin of action and filter hooks sequentially on a page.
- * Version:           1.0.1
+ * Version:           1.0.2
  * Requires at least: 5.2
  * Requires PHP:      7.2
  * Author:            Exlac
